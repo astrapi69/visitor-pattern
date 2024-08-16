@@ -12,8 +12,74 @@
 [![Hits Of Code](https://hitsofcode.com/github/astrapi69/visitor-pattern?branch=develop)](https://hitsofcode.com/github/astrapi69/visitor-pattern/view?branch=develop)
 
 </div>
+# Generic Visitor Design Pattern
 
-A generic implementation of the visitor pattern.
+This repository provides a set of interfaces to implement the Visitor design pattern in a flexible and generic way. The Visitor design pattern is a behavioral design pattern that allows you to add further operations to objects without having to modify their structure. This is achieved by separating the algorithm from the object structure on which it operates.
+
+## Overview
+
+The generic Visitor design pattern is particularly useful when you have a collection of objects with different types, and you want to perform operations on these objects without modifying their classes. By defining visitor interfaces, you allow the implementation of new operations simply by creating new visitor classes.
+
+### Key Interfaces
+
+- **`Acceptable<V>`**: This interface should be implemented by all classes that need to accept a visitor. It defines a single `accept` method that takes a visitor as a parameter.
+
+- **`Visitor<T>`**: This interface should be implemented by visitor classes that provide a custom algorithm for processing elements. It defines a `visit` method that operates on the object passed to it.
+
+- **`GenericAcceptable<VISITOR, ACCEPTABLE>`**: A more restrictive version of `Acceptable`, enforcing type safety through generics. This is useful when you need to strictly control the types of visitors and visitable objects.
+
+- **`GenericVisitor<VISITOR, ACCEPTABLE>`**: A more restrictive version of `Visitor`, which works in tandem with `GenericAcceptable` to provide type-safe visitor operations.
+
+## Example Usage
+
+### Key Components
+
+- **Menu**: Represents a menu that can contain menu items and sub-menus. Implements the `MenuAcceptableObject` interface to accept visitors.
+- **MenuItem**: Represents a single menu item with a name and an action command. Implements the `MenuAcceptableObject` interface to accept visitors.
+- **MenuVisitor**: A specialized visitor interface for visiting `Menu` and `MenuItem` objects. Extends `GenericVisitor` to enforce type safety.
+- **PrintActionCommandsMenuVisitor**: An implementation of `MenuVisitor` that prints the action commands of visited `MenuItem` objects and the names of `Menu` objects.
+
+## Example Usage
+
+The following example demonstrates how to use the Visitor pattern with the provided classes:
+
+### DemonstrateVisitorPattern
+
+This example builds a simple menu structure with sub-menus and menu items, and then uses the `PrintActionCommandsMenuVisitor` to print out the action commands of all menu items in the structure.
+
+#### Code Example:
+
+```java
+public class DemonstrateVisitorPattern
+{
+    public static void main(final String[] args)
+    {
+        // The main menu.
+        final Menu mainMenu = new Menu("Main", new ArrayList<MenuAcceptableObject>());
+        // Sub menu 'new' from main menu.
+        final Menu mainMenuNew = new Menu("New", new ArrayList<MenuAcceptableObject>());
+        // Sub menuitems from the sub menu 'new'.
+        mainMenuNew.getChildren().add(new MenuItem("File", "File action"));
+        mainMenuNew.getChildren().add(new MenuItem("Folder", "Folder action"));
+        // Sub menuitems from the main menu.
+        mainMenu.getChildren().add(mainMenuNew);
+        mainMenu.getChildren().add(new MenuItem("Open", "Open action"));
+        mainMenu.getChildren().add(new MenuItem("Save", "Save action"));
+        mainMenu.getChildren().add(new MenuItem("Print", "Print action"));
+
+        // Test the PrintActionCommandsMenuVisitor...
+        final MenuVisitor menuVisitor = new PrintActionCommandsMenuVisitor();
+        menuVisitor.visit(mainMenu);
+    }
+}
+```
+Additional Test Classes
+
+*   MenuAcceptableObject: Interface representing any object in the menu structure that can accept a MenuVisitor.
+*   PrintActionCommandsMenuVisitor: A concrete implementation of MenuVisitor that prints action commands for menu items and the names of menus.
+
+These examples provide a solid foundation for understanding how the generic Visitor pattern can be applied in Java to maintain type safety while extending functionality without modifying existing class structures.
+
 
 > Please support this project by simply putting a
 > Github <a class="github-button" href="https://github.com/astrapi69/visitor-pattern" data-icon="octicon-star" aria-label="Star astrapi69/visitor-pattern on GitHub">
