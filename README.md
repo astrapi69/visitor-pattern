@@ -14,30 +14,43 @@
 </div>
 # Generic Visitor Design Pattern
 
-This repository provides a set of interfaces to implement the Visitor design pattern in a flexible and generic way. The Visitor design pattern is a behavioral design pattern that allows you to add further operations to objects without having to modify their structure. This is achieved by separating the algorithm from the object structure on which it operates.
+This repository provides a set of interfaces to implement the Visitor design pattern in a flexible and generic way. The
+Visitor design pattern is a behavioral design pattern that allows you to add further operations to objects without
+having to modify their structure. This is achieved by separating the algorithm from the object structure on which it
+operates.
 
 ## Overview
 
-The generic Visitor design pattern is particularly useful when you have a collection of objects with different types, and you want to perform operations on these objects without modifying their classes. By defining visitor interfaces, you allow the implementation of new operations simply by creating new visitor classes.
+The generic Visitor design pattern is particularly useful when you have a collection of objects with different types,
+and you want to perform operations on these objects without modifying their classes. By defining visitor interfaces, you
+allow the implementation of new operations simply by creating new visitor classes.
 
 ### Key Interfaces
 
-- **`Acceptable<V>`**: This interface should be implemented by all classes that need to accept a visitor. It defines a single `accept` method that takes a visitor as a parameter.
+- **`Acceptable<V>`**: This interface should be implemented by all classes that need to accept a visitor. It defines a
+  single `accept` method that takes a visitor as a parameter.
 
-- **`Visitor<T>`**: This interface should be implemented by visitor classes that provide a custom algorithm for processing elements. It defines a `visit` method that operates on the object passed to it.
+- **`Visitor<T>`**: This interface should be implemented by visitor classes that provide a custom algorithm for
+  processing elements. It defines a `visit` method that operates on the object passed to it.
 
-- **`GenericAcceptable<VISITOR, ACCEPTABLE>`**: A more restrictive version of `Acceptable`, enforcing type safety through generics. This is useful when you need to strictly control the types of visitors and visitable objects.
+- **`GenericAcceptable<VISITOR, ACCEPTABLE>`**: A more restrictive version of `Acceptable`, enforcing type safety
+  through generics. This is useful when you need to strictly control the types of visitors and visitable objects.
 
-- **`GenericVisitor<VISITOR, ACCEPTABLE>`**: A more restrictive version of `Visitor`, which works in tandem with `GenericAcceptable` to provide type-safe visitor operations.
+- **`GenericVisitor<VISITOR, ACCEPTABLE>`**: A more restrictive version of `Visitor`, which works in tandem
+  with `GenericAcceptable` to provide type-safe visitor operations.
 
 ## Example Usage
 
 ### Key Components
 
-- **Menu**: Represents a menu that can contain menu items and sub-menus. Implements the `MenuAcceptableObject` interface to accept visitors.
-- **MenuItem**: Represents a single menu item with a name and an action command. Implements the `MenuAcceptableObject` interface to accept visitors.
-- **MenuVisitor**: A specialized visitor interface for visiting `Menu` and `MenuItem` objects. Extends `GenericVisitor` to enforce type safety.
-- **PrintActionCommandsMenuVisitor**: An implementation of `MenuVisitor` that prints the action commands of visited `MenuItem` objects and the names of `Menu` objects.
+- **Menu**: Represents a menu that can contain menu items and sub-menus. Implements the `MenuAcceptableObject` interface
+  to accept visitors.
+- **MenuItem**: Represents a single menu item with a name and an action command. Implements the `MenuAcceptableObject`
+  interface to accept visitors.
+- **MenuVisitor**: A specialized visitor interface for visiting `Menu` and `MenuItem` objects. Extends `GenericVisitor`
+  to enforce type safety.
+- **PrintActionCommandsMenuVisitor**: An implementation of `MenuVisitor` that prints the action commands of
+  visited `MenuItem` objects and the names of `Menu` objects.
 
 ## Example Usage
 
@@ -45,15 +58,14 @@ The following example demonstrates how to use the Visitor pattern with the provi
 
 ### DemonstrateVisitorPattern
 
-This example builds a simple menu structure with sub-menus and menu items, and then uses the `PrintActionCommandsMenuVisitor` to print out the action commands of all menu items in the structure.
+This example builds a simple menu structure with sub-menus and menu items, and then uses
+the `PrintActionCommandsMenuVisitor` to print out the action commands of all menu items in the structure.
 
 #### Code Example:
 
 ```java
-public class DemonstrateVisitorPattern
-{
-    public static void main(final String[] args)
-    {
+public class DemonstrateVisitorPattern {
+    public static void main(final String[] args) {
         // The main menu.
         final Menu mainMenu = new Menu("Main", new ArrayList<MenuAcceptableObject>());
         // Sub menu 'new' from main menu.
@@ -73,13 +85,95 @@ public class DemonstrateVisitorPattern
     }
 }
 ```
-Additional Test Classes
 
-*   MenuAcceptableObject: Interface representing any object in the menu structure that can accept a MenuVisitor.
-*   PrintActionCommandsMenuVisitor: A concrete implementation of MenuVisitor that prints action commands for menu items and the names of menus.
+## File Visitor Example
 
-These examples provide a solid foundation for understanding how the generic Visitor pattern can be applied in Java to maintain type safety while extending functionality without modifying existing class structures.
+In this example, we demonstrate the Visitor pattern applied to a file system structure. The FileVisitor visits files and
+directories, counting them and printing their paths.
+Key Components:
 
+* FileAcceptable: Represents a file or directory that can be visited. It implements the GenericAcceptable interface.
+* FileVisitor: A concrete visitor that counts the number of files and directories and prints their absolute paths.
+
+DemonstrateVisitorPattern
+
+This example traverses a directory structure starting from a given directory and counts the number of files and
+directories using the FileVisitor.
+Code Example:
+
+```java
+public class DemonstrateVisitorPattern {
+    public static void main(final String[] args) throws URISyntaxException, IOException {
+        final FileVisitor visitor = new FileVisitor();
+
+        File directory = ClassExtensions.getResourceAsFile("DemonstrateVisitorPattern.class",
+                new DemonstrateVisitorPattern());
+        directory = directory.getParentFile();
+        directory = PathFinder.getProjectDirectory();
+        final FileAcceptable visitable = new FileAcceptable(directory);
+        visitor.visit(visitable);
+        System.out.println(visitor.getFilesCounted());
+    }
+}
+```
+
+This example shows how FileVisitor visits each file and directory in the specified directory, printing their paths and
+counting them.
+
+## Tree Node Visitor Example
+
+This example demonstrates the Visitor pattern applied to a tree structure. The SimpleTreeNode class represents nodes in
+a tree, and visitors are used to traverse and display node values or collect nodes.
+
+### Key Components:
+
+* SimpleTreeNode: Represents a node in a tree structure. Implements the Acceptable interface to accept visitors.
+* DisplayValueOfSimpleTreeNodeVisitor: A visitor that prints the value of each SimpleTreeNode.
+* TraverseSimpleTreeNodeVisitor: A visitor that collects all nodes in the tree into a set.
+
+SimpleTreeNodeTest
+
+This test case sets up a tree structure and uses the visitors to perform operations on the tree nodes.
+Code Example:
+
+```java
+public class SimpleTreeNodeTest {
+    @Test
+    public void testVisitor() {
+        // Setup tree structure
+        SimpleTreeNode<String> root = new SimpleTreeNode<>("I'm root");
+        SimpleTreeNode<String> firstChild = new SimpleTreeNode<>("I'm the first child");
+        root.setLeftMostChild(firstChild);
+        SimpleTreeNode<String> secondChild = new SimpleTreeNode<>("I'm the second child");
+        firstChild.setRightSibling(secondChild);
+
+        // Use DisplayValueOfSimpleTreeNodeVisitor to print node values
+        root.accept(new DisplayValueOfSimpleTreeNodeVisitor<>());
+
+        // Use TraverseSimpleTreeNodeVisitor to collect all nodes
+        TraverseSimpleTreeNodeVisitor<String> traverseVisitor = new TraverseSimpleTreeNodeVisitor<>();
+        root.accept(traverseVisitor);
+        Set<SimpleTreeNode<String>> allTreeNodes = traverseVisitor.getAllTreeNodes();
+        assertEquals(2, allTreeNodes.size());
+    }
+}
+```
+
+This example shows how to use visitors to traverse a tree structure and perform operations on its nodes.
+
+## Additional Test Classes
+
+* MenuAcceptableObject: Interface representing any object in the menu structure that can accept a MenuVisitor.
+* PrintActionCommandsMenuVisitor: A concrete implementation of MenuVisitor that prints action commands for menu items
+  and the names of menus.
+* FileAcceptable: Represents files and directories in the file system, capable of being visited by a FileVisitor.
+* FileVisitor: A visitor that processes FileAcceptable objects, counting files and directories and printing their paths.
+* SimpleTreeNode: Represents nodes in a tree structure, capable of being visited by visitors.
+* DisplayValueOfSimpleTreeNodeVisitor: A visitor that displays the values of tree nodes.
+* TraverseSimpleTreeNodeVisitor: A visitor that collects tree nodes during traversal.
+
+These examples provide a solid foundation for understanding how the generic Visitor pattern can be applied in various
+scenarios, such as menus, file systems, and tree structures, while maintaining type safety and flexibility.
 
 > Please support this project by simply putting a
 > Github <a class="github-button" href="https://github.com/astrapi69/visitor-pattern" data-icon="octicon-star" aria-label="Star astrapi69/visitor-pattern on GitHub">
@@ -327,7 +421,3 @@ feature requests.
 
 - Feature requests, questions and bug reports can be reported at
   the [issues page](https://github.com/astrapi69/visitor-pattern/issues).
-
-## Similar projects
-
-## Credits

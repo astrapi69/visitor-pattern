@@ -24,12 +24,10 @@
  * version of {@link io.github.astrapi69.design.pattern.visitor.Visitor} using generics for type
  * safety.</li>
  * </ul>
- * </p>
  *
  * <p>
  * These interfaces provide a flexible way to implement the Visitor pattern in scenarios where
  * objects need to be visited by various visitors, potentially applying different operations,
  * without modifying the objects themselves.
- * </p>
  */
 package io.github.astrapi69.design.pattern.visitor;
