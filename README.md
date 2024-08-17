@@ -1,4 +1,4 @@
-# Overview
+# Generic Visitor Design Pattern
 
 <div style="text-align: center">
 
@@ -12,7 +12,6 @@
 [![Hits Of Code](https://hitsofcode.com/github/astrapi69/visitor-pattern?branch=develop)](https://hitsofcode.com/github/astrapi69/visitor-pattern/view?branch=develop)
 
 </div>
-# Generic Visitor Design Pattern
 
 This repository provides a set of interfaces to implement the Visitor design pattern in a flexible and generic way. The
 Visitor design pattern is a behavioral design pattern that allows you to add further operations to objects without
