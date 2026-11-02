@@ -5,7 +5,7 @@
 [![Java CI with Gradle](https://github.com/astrapi69/visitor-pattern/actions/workflows/gradle.yml/badge.svg)](https://github.com/astrapi69/visitor-pattern/actions/workflows/gradle.yml)
 [![Coverage Status](https://codecov.io/gh/astrapi69/visitor-pattern/branch/develop/graph/badge.svg)](https://codecov.io/gh/astrapi69/visitor-pattern)
 [![Open Issues](https://img.shields.io/github/issues/astrapi69/visitor-pattern.svg?style=flat)](https://github.com/astrapi69/visitor-pattern/issues)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/visitor-pattern/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/visitor-pattern)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.astrapi69/visitor-pattern)](https://central.sonatype.com/artifact/io.github.astrapi69/visitor-pattern)
 [![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/visitor-pattern.svg)](http://www.javadoc.io/doc/io.github.astrapi69/visitor-pattern)
 [![MIT License](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](http://opensource.org/licenses/MIT)
 [![Donate](https://img.shields.io/badge/donate-❤-ff2244.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GVBTWLRAZ7HB8)
@@ -199,7 +199,7 @@ The source code comes under the liberal MIT License, making visitor-pattern grea
 ## gradle dependency
 
 Replace the variable ${latestVersion} with the current latest
-version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/visitor-pattern/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/visitor-pattern)
+version: [![Maven Central](https://img.shields.io/maven-central/v/io.github.astrapi69/visitor-pattern)](https://central.sonatype.com/artifact/io.github.astrapi69/visitor-pattern)
 
 You can first define the version in the ext section and add than the following gradle dependency to
 your project `build.gradle` if you want to import the core functionality of visitor-pattern:
@@ -247,10 +247,7 @@ then add the dependency to the dependencies area
 
 ## Maven dependency
 
-Maven dependency is now on sonatype.
-Check
-out [sonatype repository](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~visitor-pattern~~~)
-for latest snapshots and releases.
+The library is on Maven Central. Check out [Maven Central](https://central.sonatype.com/artifact/io.github.astrapi69/visitor-pattern) for the latest release.
 
 Add the following maven dependency to your project `pom.xml` if you want to import the core
 functionality of visitor-pattern:
@@ -291,8 +288,6 @@ Then you can add the dependency to your dependencies:
 
 ## 📸 Snapshots
 
-[![Snapshot](https://img.shields.io/badge/dynamic/xml?url=https://oss.sonatype.org/service/local/repositories/snapshots/content/io/github/astrapi69/visitor-pattern/maven-metadata.xml&label=snapshot&color=red&query=.//versioning/latest)](https://oss.sonatype.org/content/repositories/snapshots/io/github/astrapi69/visitor-pattern/)
-
 This section describes how to import snapshot versions into your project.
 Add the following code snippet to your gradle file in the repositories section:
 
@@ -303,8 +298,8 @@ repositories {
 
 ```groovy
     maven {
-    name "Sonatype Nexus Snapshots"
-    url "https://oss.sonatype.org/content/repositories/snapshots"
+    name "Central Portal Snapshots"
+    url "https://central.sonatype.com/repository/maven-snapshots/"
     mavenContent {
         snapshotsOnly()
     }
@@ -317,71 +312,13 @@ repositories {
 
 </details>
 
-# Donations
+## Support this project
 
-This project is kept as an open source product and relies on contributions to remain being
-developed. If you like this library, please consider a donation
+If visitor-pattern is useful to you, a star on [GitHub](https://github.com/astrapi69/visitor-pattern) helps others find it.
+Sharing it or reporting a bug helps just as much.
 
-over paypal:
-<br>
-<br>
-<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=MJ7V43GU2H386" target="_blank">
-<img src="https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif"
-alt="PayPal this"
-title="PayPal – The safer, easier way to pay online!"
-style="border: none" />
-</a>
-<br>
-<br>
-or over bitcoin(BTC) with this address:
-
-bc1ql2y99q7e8psndhcc3gferk03esw3qqf677rhjy
-
-<img
-src="https://github.com/astrapi69/jgeohash/blob/master/src/main/resources/img/bc1ql2y99q7e8psndhcc3gferk03esw3qqf677rhjy.png"
-alt="Donation Bitcoin Wallet" width="250"/>
-
-or over FIO with this address:
-
-FIO7tFMUVAA9cHiPPqKMfMXiSxHrbpiFyRYqTketNuM67aULuwjop
-
-<img
-src="https://github.com/astrapi69/jgeohash/blob/master/src/main/resources/img/FIO7tFMUVAA9cHiPPqKMfMXiSxHrbpiFyRYqTketNuM67aULuwjop.png"
-alt="Donation FIO Wallet" width="250"/>
-
-or over Ethereum(ETH) with:
-
-0xc057D159D3C8f3311E73568b334FF6fE82EB2b7D
-
-<img
-src="https://github.com/astrapi69/jgeohash/blob/master/src/main/resources/img/0xc057D159D3C8f3311E73568b334FF6fE82EB2b7D.png"
-alt="Donation Ethereum Wallet" width="250"/>
-
-or over Ethereum Classic(ETC) with:
-
-0xF708cA86D86C246B69c3F4BAe431eBbe0c2bfddD
-
-<img
-src="https://github.com/astrapi69/jgeohash/blob/master/src/main/resources/img/0xF708cA86D86C246B69c3F4BAe431eBbe0c2bfddD.png"
-alt="Donation Ethereum Classic Wallet" width="250"/>
-
-or over Dogecoin(DOGE) with:
-
-D5yi4Um8cpakd6yPRm2hGWuQ5nrVzhSSW1
-
-<img
-src="https://github.com/astrapi69/jgeohash/blob/master/src/main/resources/img/D5yi4Um8cpakd6yPRm2hGWuQ5nrVzhSSW1.png"
-alt="Donation Dogecoin Wallet" width="250"/>
-
-or over Monero(XMR) with:
-
-49bqeRQ7Bf49oJFVC72pqpe5hFbb62pfXDYPdLsadGGF81KZW2ZfrPZ8PbAVu5X2v1TYAspeczMya3cYQysNS4usRRPQHVw
-
-<img
-src="https://github.com/astrapi69/jgeohash/blob/master/src/main/resources/img/49bqeRQ7Bf49oJFVC72pqpe5hFbb62pfXDYPdLsadGGF81KZW2ZfrPZ8PbAVu5X2v1TYAspeczMya3cYQysNS4usRRPQHVw.png"
-alt="Donation Monero Wallet" width="250"/>
-
-or over the donation buttons at the top.
+If you would like to contribute financially, the channels are on the repository's Sponsor button, which
+reads [.github/FUNDING.yml](.github/FUNDING.yml): GitHub Sponsors, Liberapay, Ko-fi and PayPal.
 
 ## Semantic Versioning
 
@@ -420,3 +357,12 @@ feature requests.
 
 - Feature requests, questions and bug reports can be reported at
   the [issues page](https://github.com/astrapi69/visitor-pattern/issues).
+
+## Git hooks
+
+The repository's git hooks live in `.githooks`: `commit-msg` where present, and `pre-commit`, which refuses a
+commit whose files Spotless would format. Activate them once per clone or worktree:
+
+```bash
+git config core.hooksPath .githooks
+```
